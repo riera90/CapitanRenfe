@@ -15,22 +15,19 @@ import time
 def has_keyword(text):
     for keyword in keywords:
         if keyword in text.split(' '):
-            print("has keyword!")
             return True
-    print("does not has keyword")
     return False
 
 
 def get_last_tweet(api):
     "returns the plain text of the last renfe into tweet"
-    return api.user_timeline(screen_name = "riera901", count=1, tweet_mode="extended")[0].full_text
+    return api.user_timeline(screen_name = "Inforenfe", count=1, tweet_mode="extended")[0].full_text
 
 
 def a_new_train_is_delayed(api):
-    global tweet
     "retuns true when renfe info tweets something that contains at least 1 delay keyword"
+    global tweet
     if tweet != get_last_tweet(api):
-        print("new tweet!!")
         tweet = get_last_tweet(api)
         if has_keyword(tweet):
             return True
@@ -39,12 +36,11 @@ def a_new_train_is_delayed(api):
 
 def tweet_content(api, content):
     "tweets a string!"
-    print(content)
+    api.update_status(content)
 
 
 def pooling(api):
     "just the polling. Again and again and again..."
-    print("pooling...")
     if a_new_train_is_delayed(api):
         content = "Capitán Renfe se retrasa de nuevo!"
         tweet_content(api, content)
@@ -65,9 +61,8 @@ def main():
     
     while True:
         try:
-            time.sleep(1)
+            time.sleep(30)
             pooling(api)
-            time.sleep(1)
         except Exception as e:
             print("an exception has occured, but don't ask me to fix it :)")
             print(e)
