@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 '''
 Este bot fue creado durante un día que renfe se retrasasó
 Estaba aburrido en el tren y me puse a hacerlo... grande renfe!
@@ -54,10 +55,6 @@ def main():
     global keywords
     tweet = get_last_tweet(api)
     keywords = open("keywords.dat", "r").read().split(' ')
-    
-    print (keywords)
-    print (tweet)
-    
     
     while True:
         try:
