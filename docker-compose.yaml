@@ -3,3 +3,4 @@ services:
     web:
         build: .
         restart: always
+        network_mode: host
