@@ -1,4 +1,5 @@
 FROM python:3.6
-COPY . /app
+ADD . /app
 WORKDIR /app
-CMD python3 -m pip install -r requirements.txt && python3 ./init.py
+RUN python3 -m pip install -r requirements.txt
+CMD python3 ./init.py
