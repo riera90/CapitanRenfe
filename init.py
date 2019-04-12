@@ -59,8 +59,7 @@ def main():
     print (tweet)
     if has_keyword(tweet):
         print("has_keyword!")
-        content = "Capitán Renfe se retrasa de nuevo!"
-        tweet_content(api, content)
+        tweet_content(api, "test!")
 
     
     while True:
