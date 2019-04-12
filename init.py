@@ -56,9 +56,16 @@ def main():
     tweet = get_last_tweet(api)
     keywords = open("keywords.dat", "r").read().split(' ')
     
+    print (tweet)
+    if has_keyword(tweet):
+        print("has_keyword!")
+        content = "Capitán Renfe se retrasa de nuevo!"
+        tweet_content(api, content)
+
+    
     while True:
         try:
-            time.sleep(30)
+            time.sleep(5)
             pooling(api)
         except Exception as e:
             print("an exception has occured, but don't ask me to fix it :)")
